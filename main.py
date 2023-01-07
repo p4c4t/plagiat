@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import argparse
+import models
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+parser = argparse.ArgumentParser()
+parser.add_argument("input_file", type=str)
+parser.add_argument("output_file", type=str)
+args = parser.parse_args()
+input_file, output_file = args.input_file, args.output_file
+with open(input_file) as inp:
+    with open(output_file, "w") as out:
+        for line in inp:
+            file1, file2 = line.split(' ')
+            score = models.score(file1, file2)
+            out.write(f"{score}\n")
