@@ -9,6 +9,6 @@ input_file, output_file = args.input_file, args.output_file
 with open(input_file) as inp:
     with open(output_file, "w") as out:
         for line in inp:
-            file1, file2 = line.split(' ')
+            file1, file2 = [x.strip(' \n\r') for x in line.split(' ')]
             score = models.score(file1, file2)
             out.write(f"{score}\n")
